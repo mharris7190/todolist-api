@@ -47,6 +47,23 @@ RSpec.describe 'Tasks', :type => :request do
     end
   end
 
+# ALTERNATE WAY: USES FACTORY GIRL
+# def fake_user do
+#     @user1 = Factory.girl.create(:user)
+#     yield(@user1)
+#   end
+
+#     it 'adds a task to the db' do
+#       fake_user do |user|
+#         post :create, user_id: @user1.id, due_date: "2/3/15", description: "task3"
+#         expect(response).to eq 3
+#     end
+
+#     it "should associate task with the correct user" do
+#       expect(@user1.tasks.count).to eq 3
+#     end
+
+
   describe 'PUT /users/:id/tasks/:id#update' do
     it 'update the user' do
       test_user = User.create!(name: 'Andy Dick', email: 'test@email.com')
