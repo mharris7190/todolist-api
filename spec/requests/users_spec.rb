@@ -43,7 +43,7 @@ RSpec.describe "Users", :type => :request do
   describe 'DELETE destroy /users/:id' do
     it 'deletes the user' do
       expect{
-        delete "/users/#{@user1.id}"
+        delete "/users/1"
         }.to change(User, :count).by(-1)
     end
   end
