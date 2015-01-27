@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Tasks', :type => :request do
+
+  before(:each) do 
+    @user1 = User.create!(name: "test", email:"test@email.com")
+    @task1 = @user1.tasks.create!(description: "task1", due_date: "2/1/15")
+    @task2 = @user1.tasks.create!(description: "task2", due_date: "2/2/15")
+  end
+  
   describe 'GET users/1/tasks' do
     it 'works! (now write some real specs)' do
       get user_tasks_path(1)
@@ -10,9 +17,7 @@ RSpec.describe 'Tasks', :type => :request do
 
   describe 'GET users/:id/tasks/:id' do
   	it 'works!' do
-  		test_user = User.create!(name: 'Andy Dick', email: 'test@email.com')
-  		test_task = test_user.tasks.create!(description: 'Test Task', due_date: '1/30/15')
-  		get user_task_path(test_user,test_task)
+  		get user_task_path(@task1, @user1)
   		expect(response).to have_http_status(200)
   	end
   end
