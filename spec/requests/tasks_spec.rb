@@ -8,7 +8,7 @@ RSpec.describe 'Tasks', :type => :request do
     end
   end
 
-  describe 'GET users/1/tasks/1' do
+  describe 'GET users/:id/tasks/:id' do
   	it 'works!' do
   		test_user = User.create!(name: 'Andy Dick', email: 'test@email.com')
   		test_task = test_user.tasks.create!(description: 'Test Task', due_date: '1/30/15')
@@ -17,7 +17,7 @@ RSpec.describe 'Tasks', :type => :request do
   	end
   end
 
-  describe 'POST /users/1/tasks/1#create' do
+  describe 'POST /users/:id/tasks/:id#create' do
     before do
       test_user = User.create!(name: 'Andy Dick', email: 'test@email.com')
     end
@@ -29,7 +29,7 @@ RSpec.describe 'Tasks', :type => :request do
     end
   end
 
-  describe 'PUT /users/1/tasks/:1#update' do
+  describe 'PUT /users/:id/tasks/:id#update' do
     it 'update the user' do
       test_user = User.create!(name: 'Andy Dick', email: 'test@email.com')
       test_task = test_user.tasks.create!(description: 'Test Task', due_date: '1/30/15')
@@ -37,7 +37,7 @@ RSpec.describe 'Tasks', :type => :request do
     end
   end
 
-  describe 'DELETE destroy /users/1/tasks/1' do
+  describe 'DELETE destroy /users/:id/tasks/:id' do
     before do
       test_user = User.create!(name: 'test', email:'test@email.com')
       test_task = test_user.tasks.create!(description: 'Test Task', due_date: '1/30/15')
