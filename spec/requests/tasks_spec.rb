@@ -39,11 +39,11 @@ RSpec.describe 'Tasks', :type => :request do
     end
 
     it "adds a task to the db" do
-      expect(Task.all.count).to eq(3)
+      expect(Task.all.count).to eq 3
     end
 
     it "associates the added task with the correct user" do
-      expect(@user1.tasks.count).to eq(3)
+      expect(@user1.tasks.count).to eq 3
     end
   end
 
