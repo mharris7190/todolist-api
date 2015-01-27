@@ -27,7 +27,7 @@ RSpec.describe "Users", :type => :request do
       }.to change(User, :count).by(1)
     end
 
-    it 'shoud get 201 status code' do
+    it 'should get 201 status code' do
       post users_path(user: {name: "Test", email: "test@test.com"})
       expect(response).to have_http_status(201)
     end 
