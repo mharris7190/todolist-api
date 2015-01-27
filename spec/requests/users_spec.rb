@@ -15,4 +15,13 @@ RSpec.describe "Users", :type => :request do
   		expect(response).to have_http_status(200)
   	end
   end
+
+  describe "POST /users#create" do
+    it 'should add one user' do
+      expect {
+        post '/users.json', :user => {:name => 'Test', :login => 'test@test.com'}
+      }.to change(User, :count).by(1)
+    end
+  end
+
 end
