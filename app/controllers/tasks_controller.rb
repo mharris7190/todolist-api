@@ -31,7 +31,7 @@ class TasksController < ApplicationController
   # PATCH/PUT users/1/tasks/1
   # PATCH/PUT users/1/tasks/1.json
   def update
-    @task = Task.find(params[:id])
+    @task = @user.tasks.find(params[:id])
 
     if @task.update(task_params)
       render json: @task
