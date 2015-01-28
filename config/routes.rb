@@ -3,7 +3,11 @@ Rails.application.routes.draw do
     resources :tasks, except: [:new, :edit] 
   end
 
-  resources :tasks, except: [:new, :edit] 
+  # deleted explicit resource for tasks
+  # error was in the post action in the tasks controller status: :created, LOCATION: @TASK
+  # the location: @task was directing the response to "task_url" which didn't exist so I
+  # created an explicit interpolated path based on the user as well "users/#{@user.id}/tasks/#{@task.id}"
+  # this is so that it still returns the location of the object but that it hits the right nested resource
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
