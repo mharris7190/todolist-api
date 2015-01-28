@@ -53,11 +53,19 @@ module Api
 
       private
         def set_user
-          @user = User.find(params[:user_id])
+          begin
+            @user = User.find(params[:user_id])
+          rescue ActiveRecord::RecordNotFound => e
+            render json: "User with id #{params[:user_id]} not found\n", status: 404
+          end
         end
 
         def set_task
-          @task = @user.tasks.find(params[:id])
+          begin
+            @task = @user.tasks.find(params[:id])
+          rescue ActiveRecord::RecordNotFound => e
+            render json: "Task with id #{params[:id]} not found\n", status: 404
+          end
         end
 
         def task_params

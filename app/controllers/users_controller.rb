@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   # CURL EXAMPLE:
-  # ~$ curl -H "Content-Type: application/json" -d '{"name":"Jud", "email":"Jud@test.com"}' http://localhost:3000/users
+  # ~$ curl -H "Content-Type: application/json" -d '{"name":"Jud", "email":"Jud@test.com"}' http://localhost:3000/api/v1/users
   def create
     @user = User.new(user_params)
 
@@ -52,7 +52,11 @@ class UsersController < ApplicationController
   private
 
     def set_user
-      @user = User.find(params[:id])
+      begin
+        @user = User.find(params[:id])
+      rescue ActiveRecord::RecordNotFound => e
+        render json: "User with id #{params[:id]} not found\n", status: 404
+      end
     end
 
     def user_params
