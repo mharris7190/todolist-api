@@ -10,14 +10,14 @@ RSpec.describe 'Tasks', :type => :request do
 
   describe 'GET users/1/tasks' do
     it 'works! (now write some real specs)' do
-      get user_tasks_path(@task1)
+      get api_v1_user_tasks_path(@task1)
       expect(response).to have_http_status(200)
     end
   end
 
   describe 'GET users/:id/tasks/:id' do
   	it 'works!' do
-  		get user_task_path(@user1, @task2)
+  		get api_v1_user_task_path(@user1, @task2)
   		expect(response).to have_http_status(200)
   	end
   end
@@ -25,7 +25,7 @@ RSpec.describe 'Tasks', :type => :request do
 
   describe 'POST /users/:id/tasks/:id#create' do
     before(:each) do
-      post(user_tasks_path(@user1), task: {description: "task3", due_date: "2/3/15"})
+      post(api_v1_user_tasks_path(@user1), task: {description: "task3", due_date: "2/3/15"})
     end
 
     it "adds a task to the db" do
@@ -41,7 +41,7 @@ RSpec.describe 'Tasks', :type => :request do
 
   describe 'PUT /users/:id/tasks/:id#update' do
     before(:each) do
-      put("users/1/tasks/1", {description: "updated task1"})
+      put("api/v1/users/1/tasks/1", {description: "updated task1"})
     end
 
     it 'description should not still be the same' do
@@ -59,7 +59,7 @@ RSpec.describe 'Tasks', :type => :request do
 
     it 'deletes task1 from user1' do
       preCount = @user1.tasks.count
-      delete 'users/1/tasks/1'
+      delete 'api/v1/users/1/tasks/1'
       expect(@user1.tasks.count).to eq(preCount-1)
     end
   end

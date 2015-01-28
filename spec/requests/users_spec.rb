@@ -8,14 +8,14 @@ RSpec.describe "Users", :type => :request do
 
   describe "GET /users" do
     it "retrieves all users" do
-      get users_path
+      get api_v1_users_path
       expect(response).to have_http_status(200)
     end
   end
 
   describe "GET /user/:id" do
   	it "retrieves a user from an id" do
-  		get user_path(@user1)
+  		get api_v1_user_path(@user1)
   		expect(response).to have_http_status(200)
   	end
   end
@@ -23,12 +23,12 @@ RSpec.describe "Users", :type => :request do
   describe 'POST create /users/:id' do
     it 'should add one user' do
       expect {
-        post '/users.json', :user => {:name => 'Test', :email => 'test@test.com'}
+        post 'api/v1/users.json', :user => {:name => 'Test', :email => 'test@test.com'}
       }.to change(User, :count).by(1)
     end
 
     it 'should get 201 status code' do
-      post users_path(user: {name: "Test", email: "test@test.com"})
+      post api_v1_users_path(user: {name: "Test", email: "test@test.com"})
       expect(response).to have_http_status(201)
     end 
   end
@@ -36,14 +36,14 @@ RSpec.describe "Users", :type => :request do
   describe 'PUT update /users/:id' do
     it 'update the user' do
       @testUser = User.create!(name: 'test', email:'test@email.com')
-      put '/users/1', :user =>  {:email => 'newemail@email.com'}
+      put 'api/v1/users/1', :user =>  {:email => 'newemail@email.com'}
     end
   end
 
   describe 'DELETE destroy /users/:id' do
     it 'deletes the user' do
       expect{
-        delete "/users/1"
+        delete "api/v1/users/1"
         }.to change(User, :count).by(-1)
     end
   end
