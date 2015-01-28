@@ -17,6 +17,8 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
+  # CURL EXAMPLE:
+  # ~$ curl -H "Content-Type: application/json" -d '{"name":"Jud", "email":"Jud@test.com"}' http://localhost:3000/users
   def create
     @user = User.new(user_params)
 
@@ -54,6 +56,12 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email)
+      # Require User would require us to make a request like so using curl (after -d):
+      # -d '{"user": {name":"Jud", "email":"Jud@test.com"}}' http://localhost:3000/users
+      # instead of just
+      # -d '{"name":"Jud", "email":"Jud@test.com"}' http://localhost:3000/users
+      #params.require(:user).permit(:name, :email)
+      
+      params.permit(:name, :email)
     end
 end

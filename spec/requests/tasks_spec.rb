@@ -41,7 +41,7 @@ RSpec.describe 'Tasks', :type => :request do
 
   describe 'PUT /users/:id/tasks/:id#update' do
     before(:each) do
-      put("users/1/tasks/1", task: {description: "updated task1"})
+      put("users/1/tasks/1", {description: "updated task1"})
     end
 
     it 'description should not still be the same' do

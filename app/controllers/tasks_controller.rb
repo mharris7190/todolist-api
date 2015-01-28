@@ -59,6 +59,9 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:description, :due_date, :user_id)
+      # params.require(:task).permit(:description, :due_date, :user_id)
+      # removed require because requests are implicit (just like in users)
+      # updated PUT request in tasks_spec to reflect this change
+      params.permit(:description, :due_date, :user_id)
     end
 end
