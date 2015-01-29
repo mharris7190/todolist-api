@@ -23,12 +23,12 @@ RSpec.describe "Users", :type => :request do
   describe 'POST create /users/:id' do
     it 'should add one user' do
       expect {
-        post 'api/v1/users.json', :user => {:name => 'Test', :email => 'test@test.com'}
+        post 'api/v1/users.json', {:name => 'Test', :email => 'test@test.com'}
       }.to change(User, :count).by(1)
     end
 
     it 'should get 201 status code' do
-      post api_v1_users_path(user: {name: "Test", email: "test@test.com"})
+      post api_v1_users_path({name: "Test", email: "test@test.com"})
       expect(response).to have_http_status(201)
     end 
   end

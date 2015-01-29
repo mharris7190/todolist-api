@@ -25,10 +25,11 @@ RSpec.describe 'Tasks', :type => :request do
 
   describe 'POST /users/:id/tasks/:id#create' do
     before(:each) do
-      post(api_v1_user_tasks_path(@user1), task: {description: "task3", due_date: "2/3/15"})
+      post(api_v1_user_tasks_path(@user1), {description: "task3", due_date: "2/3/15"})
     end
 
     it "adds a task to the db" do
+      puts response.body
       expect(Task.all.count).to eq 3
     end
 
